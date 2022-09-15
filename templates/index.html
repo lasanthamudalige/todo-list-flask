@@ -13,17 +13,18 @@
         <div class="row text-center">
           <div class="col me-2">
             <h3 class="mb-5">Available Tasks</h3>
-                <form action="/add_task" method="post">
+                <form action="/add_new_task" method="post">
                     <div class="mb-5">
                         <input type="text" class="form-control" name="new-task" placeholder="Enter a task and press enter" aria-describedby="addTask">
                     </div>
                 </form>
-                <form action="/add_to_progress", method="post">
+                <div class="mb-5 text-start">
                 {% for task in tasks %}
-                  <p class="d-inline-flex align-content-between"><span class="material-symbols-outlined me-2">today</span>
-                    {{ task.task }} <button class="border-0 ms-5" type="submit">Start</button></p>
+                <p class="d-inline-flex align-content-between">
+                  <span class="material-symbols-outlined me-2">event</span>{{ task.name }} 
+                  <button class="border-0 btn-outline-light ms-2"><a class="text-decoration-none text-dark" href="{{ url_for('add_to_progress', task_id=task.id ) }}">Start</a></button><button class="border-0 btn-outline-light ms-2"><a class="text-decoration-none text-dark" href="{{ url_for('delete_new_task', task_id=task.id ) }}">Delete</a></button></p><br>
                 {% endfor %}
-              </form>
+              </div>
           </div>
           <div class="col">
             <h3 class="mb-5">In progress</h3>
