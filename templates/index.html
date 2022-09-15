@@ -1,4 +1,38 @@
-{% extends "layout.html" %} {% block title %}My to-do-list {{date}}{% endblock
-%} {% block main %}
-<h1>{{date}}</h1>
+{% extends "layout.html" %} 
+
+{% block title %}My to-do-list {{date}}{% endblock %}
+
+{% block main %}
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">My To-do list {{date}}</span>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row text-center">
+          <div class="col me-2">
+            <h3 class="mb-5">Available Tasks</h3>
+                <form action="/add_task" method="post">
+                    <div class="mb-5">
+                        <input type="text" class="form-control" name="new-task" placeholder="Enter a task and press enter" aria-describedby="addTask">
+                    </div>
+                </form>
+                <form action="/add_to_progress", method="post">
+                {% for task in tasks %}
+                  <p class="d-inline-flex align-content-between"><span class="material-symbols-outlined me-2">today</span>
+                    {{ task.task }} <button class="border-0 ms-5" type="submit">Start</button></p>
+                {% endfor %}
+              </form>
+          </div>
+          <div class="col">
+            <h3 class="mb-5">In progress</h3>
+            <p>Column</p>
+          </div>
+          <div class="col ms-2">
+            <h3 class="mb-5">Completed</h3>
+              <p>Column</p>
+          </div>
+        </div>
+      </div>
 {% endblock %}
