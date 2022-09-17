@@ -1,6 +1,6 @@
 {% extends "layout.html" %} 
 
-{% block title %}My to-do-list {{date}}{% endblock %}
+{% block title %}My to-do-list{% endblock %}
 
 {% block main %}
     <nav class="navbar navbar-dark bg-dark">
@@ -11,7 +11,7 @@
 
     <div class="container mt-5">
         <div class="row text-center">
-          <div class="col me-2">
+          <div class="col me-4   bg-light">
             <h3 class="mb-5">Available Tasks</h3>
                 <form action="/add_new_task" method="post">
                     <div class="mb-5">
@@ -19,20 +19,31 @@
                     </div>
                 </form>
                 <div class="mb-5 text-start">
-                {% for task in tasks %}
-                <p class="d-inline-flex align-content-between">
+                {% for task in new_tasks %}
+                <p class="d-inline-flex align-items-center">
                   <span class="material-symbols-outlined me-2">event</span>{{ task.name }} 
-                  <button class="border-0 btn-outline-light ms-2"><a class="text-decoration-none text-dark" href="{{ url_for('add_to_progress', task_id=task.id ) }}">Start</a></button><button class="border-0 btn-outline-light ms-2"><a class="text-decoration-none text-dark" href="{{ url_for('delete_new_task', task_id=task.id ) }}">Delete</a></button></p><br>
+                  <a class="btn btn-outline-secondary text-decoration-none text-dark ms-4 me-2" href="{{ url_for('add_to_progress', task_id=task.id ) }}">Start</a><a class="btn btn-outline-secondary text-decoration-none text-dark" href="{{ url_for('delete_new_task', task_id=task.id ) }}">Delete</a></p><br>
                 {% endfor %}
               </div>
           </div>
-          <div class="col">
+          <div class="col bg-light">
             <h3 class="mb-5">In progress</h3>
-            <p>Column</p>
+              <div class="mb-5 text-start">
+                {% for task in active_tasks %}
+                <p class="d-inline-flex align-items-center">
+                  <span class="material-symbols-outlined me-2">donut_large</span>{{ task.name }} 
+                  <a class="btn btn-outline-secondary text-decoration-none text-dark ms-4" href="{{ url_for('add_to_complete', task_id=task.id ) }}">Complete</a></p><br>
+                {% endfor %}
+              </div>
           </div>
-          <div class="col ms-2">
+          <div class="col ms-4 bg-light">
             <h3 class="mb-5">Completed</h3>
-              <p>Column</p>
+              <div class="mb-5 text-start">
+                {% for task in completed_tasks %}
+                <p class="d-inline-flex align-items-center">
+                  <span class="material-symbols-outlined me-2">done</span>{{ task.name }}  &emsp; {{ task.completed.time().strftime('%H:%M:%S') }}<a class="btn btn-outline-secondary text-decoration-none text-dark ms-4 me-2" href="{{ url_for('undo_complete_task', task_id=task.id ) }}">Undo</a><a class="btn btn-outline-secondary text-decoration-none text-dark" href="{{ url_for('delete_complete_task', task_id=task.id ) }}">Delete</a></button></p><br>
+                {% endfor %}
+              </div>
           </div>
         </div>
       </div>
