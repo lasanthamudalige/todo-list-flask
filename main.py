@@ -36,26 +36,32 @@ class CompletedTask(db.Model):
 date = datetime.today().strftime("%d/%m/%Y")
 
 
+# Pass all the tables to home file to load
 @app.route("/")
 def home():
     return render_template("index.html", date=date, new_tasks=NewTask.query.all(), active_tasks=ActiveTask.query.all(), completed_tasks=CompletedTask.query.all())
 
 
+# Add a new task when user press enter after entering a task in first column
 @app.route("/add_new_task", methods=["GET", "POST"])
 def add_new_task():
     if request.method == "POST":
         time_stamp = datetime.now()
 
         task_name = request.form.get("new-task").title()
-        task = NewTask(name=task_name, added=time_stamp)
-        db.session.add(task)
-        db.session.commit()
+        # If user enter a valid task
+        if task_name != "":
+            task = NewTask(name=task_name, added=time_stamp)
+            db.session.add(task)
+            db.session.commit()
 
         return redirect("/")
 
 
+# Delete a new task when user press delete button
 @app.route("/delete_new_task/<int:task_id>")
 def delete_new_task(task_id):
+    # Search task by id
     task = NewTask.query.filter_by(id=task_id).first()
     db.session.delete(task)
     db.session.commit()
@@ -63,6 +69,7 @@ def delete_new_task(task_id):
     return redirect("/")
 
 
+# Add to progress column when user press start button
 @app.route("/add_to_progress/<int:task_id>")
 def add_to_progress(task_id):
     time_stamp = datetime.now()
@@ -76,6 +83,7 @@ def add_to_progress(task_id):
     return redirect("/")
 
 
+# Add to complete when user press complete button
 @app.route("/add_to_complete/<int:task_id>")
 def add_to_complete(task_id):
     time_stamp = datetime.now()
@@ -90,6 +98,7 @@ def add_to_complete(task_id):
     return redirect("/")
 
 
+# User can undo the complete task by pressing undo button
 @app.route("/undo_complete_task/<int:task_id>")
 def undo_complete_task(task_id):
     time_stamp = datetime.now()
@@ -103,6 +112,7 @@ def undo_complete_task(task_id):
     return redirect("/")
 
 
+# User can delete task by pressing delete button
 @app.route("/delete_complete_task/<int:task_id>")
 def delete_complete_task(task_id):
     task = CompletedTask.query.filter_by(id=task_id).first()
