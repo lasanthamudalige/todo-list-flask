@@ -29,8 +29,9 @@ class CompletedTask(db.Model):
     name = db.Column(db.String(250), nullable=False)
     completed = db.Column(db.DateTime, nullable=False)
 
-
+# Create database for the first time
 # db.create_all()
+
 
 # Current date
 date = datetime.today().strftime("%d/%m/%Y")
