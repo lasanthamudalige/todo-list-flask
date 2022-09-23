@@ -5,4 +5,4 @@
 </ul>
 
 <h2>Preview</h2>
-<img src="https://user-images.githubusercontent.com/91461938/191906008-78f139d4-26df-4e8d-a834-d58c1938500e.gif">
+<img src="https://user-images.githubusercontent.com/91461938/191906334-99df230f-9cb6-4a47-af14-0fd9eea696f3.gif">
