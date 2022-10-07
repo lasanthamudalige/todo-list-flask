@@ -1,10 +1,13 @@
 from flask import Flask, render_template, request, redirect
+import os
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
+# Current file path
+file_path = os.path.dirname(os.path.abspath(__file__))
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///" + file_path + "tasks.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -17,7 +20,7 @@ class NewTask(db.Model):
 
 
 class ActiveTask(db.Model):
-    __tablename__ = "incomplete_task"
+    __tablename__ = "active_task"
     id = db.Column(db.Integer, primary_key=True, unique=True)
     name = db.Column(db.String(250), nullable=False)
     started = db.Column(db.DateTime, nullable=False)
@@ -29,9 +32,10 @@ class CompletedTask(db.Model):
     name = db.Column(db.String(250), nullable=False)
     completed = db.Column(db.DateTime, nullable=False)
 
-# Create database for the first time
-# db.create_all()
 
+# run once to create a db
+# with app.app_context():  # From SQLAlchemy 3.0
+    # db.create_all()
 
 # Current date
 date = datetime.today().strftime("%d/%m/%Y")
@@ -90,8 +94,8 @@ def add_to_complete(task_id):
     time_stamp = datetime.now()
 
     active_task = ActiveTask.query.filter_by(id=task_id).first()
-    print(active_task.name)
-    complete_task = CompletedTask(name=active_task.name, completed=time_stamp)
+    complete_task = CompletedTask(
+        name=active_task.name, completed=time_stamp)
     db.session.add(complete_task)
     db.session.delete(active_task)
     db.session.commit()
