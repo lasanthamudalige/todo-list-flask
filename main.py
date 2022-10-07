@@ -33,7 +33,7 @@ class CompletedTask(db.Model):
     completed = db.Column(db.DateTime, nullable=False)
 
 
-# run once to create a db
+# Run once to create a db
 # with app.app_context():  # From SQLAlchemy 3.0
     # db.create_all()
 
