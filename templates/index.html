@@ -41,7 +41,7 @@
               <div class="mb-5 text-start">
                 {% for task in completed_tasks %}
                 <p class="d-inline-flex align-items-center">
-                  <span class="material-symbols-outlined me-2">done</span>{{ task.name }}  &emsp; {{ task.completed.time().strftime('%H:%M:%S') }}<a class="btn btn-outline-secondary text-decoration-none text-dark ms-4 me-2" href="{{ url_for('undo_complete_task', task_id=task.id ) }}">Undo</a><a class="btn btn-outline-secondary text-decoration-none text-dark" href="{{ url_for('delete_complete_task', task_id=task.id ) }}">Delete</a></button></p><br>
+                  <span class="material-symbols-outlined me-2">done</span><del>{{ task.name }}</del>  &emsp; {{ task.completed.time().strftime('%H:%M:%S') }}<a class="btn btn-outline-secondary text-decoration-none text-dark ms-4 me-2" href="{{ url_for('undo_complete_task', task_id=task.id ) }}">Undo</a><a class="btn btn-outline-secondary text-decoration-none text-dark" href="{{ url_for('delete_complete_task', task_id=task.id ) }}">Delete</a></button></p><br>
                 {% endfor %}
               </div>
           </div>
