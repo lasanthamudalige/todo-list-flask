@@ -1,6 +1,6 @@
 # To-do list
 
-A to-do list done using python flask and sql alchemy
+A to-do list done using python flask and sql alchemy.
 
 ## Description
 
