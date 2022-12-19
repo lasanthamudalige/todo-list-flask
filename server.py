@@ -3,11 +3,8 @@ import os
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
-# Current file path
-file_path = os.path.dirname(os.path.abspath(__file__))
-
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///" + file_path + "tasks.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///tasks.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -34,8 +31,8 @@ class CompletedTask(db.Model):
 
 
 # Run once to create a db
-# with app.app_context():  # From SQLAlchemy 3.0
-    # db.create_all()
+with app.app_context():  # From SQLAlchemy 3.0
+    db.create_all()
 
 # Current date
 date = datetime.today().strftime("%d/%m/%Y")
