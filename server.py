@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, redirect
-import os
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
@@ -31,8 +30,8 @@ class CompletedTask(db.Model):
 
 
 # Run once to create a db
-with app.app_context():  # From SQLAlchemy 3.0
-    db.create_all()
+# with app.app_context():  # From SQLAlchemy 3.0
+#     db.create_all()
 
 # Current date
 date = datetime.today().strftime("%d/%m/%Y")
