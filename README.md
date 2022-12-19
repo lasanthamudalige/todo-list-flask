@@ -10,7 +10,7 @@ A To-Do list program using [Python](https://www.python.org/), [Flask](https://fl
 
 ## General info
 
-A new task can be added 
+User can add new tasks and start it and then complete them in a progressive manner. 
 
 ## Technologies
 Project is created with:
