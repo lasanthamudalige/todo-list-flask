@@ -1,11 +1,52 @@
-# To-do list
+# To-Do list
 
-A to-do list done using python flask and sql alchemy.
+A To-Do list program using [Python](https://www.python.org/), [Flask](https://flask.palletsprojects.com/en/2.2.x/) and [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/).
 
-## Description:
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Usage](#usage)
 
-There are 3 columns in the website. First user can add a new task to available tasks and there are 2 options to delete and start. When user start an available task it moves to in progress column in there user can press complete if he/she wants to complete tasks. After clicking comelete that task will get added to the completed tasks. In that column user can undo or delete the comeplted task.
+## General info
 
-### Preview:
+A new task can be added 
 
-<img src="https://user-images.githubusercontent.com/91461938/196653593-a7f17e2c-bc01-4c9d-8ce0-4bfa69e237f8.gif">
+## Technologies
+Project is created with:
+* Python version: 3.10.6
+* Flask version: 2.2.2
+	
+## Setup
+
+To clone and run this application, you'll need [Git](https://git-scm.com) installed on your computer.\
+From your command line run:
+
+```
+# Clone this repository
+$ git clone https://github.com/lasanthamudalige/todo-list.git
+
+# Go into the repository
+$ cd todo-list/
+
+# To install all dependencies
+$ pip install -r requirements.txt
+```
+
+
+## Usage
+
+To run this project in Linux/Unix:
+
+```
+$ python3 server.py
+```
+
+To run this project in Windows:
+
+```
+$ python server.py
+```
+
+## License 
+This project is open source and available under the [MIT License](https://github.com/lasanthamudalige/todo-list/blob/main/LICENSE).
