@@ -24,7 +24,7 @@ From your command line run:
 
 ```
 # Clone this repository
-$ git clone https://github.com/lasanthamudalige/todo-list.git
+$ git clone https://github.com/lasanthamudalige/todo-list-flask.git
 
 # Go into the repository
 $ cd todo-list/
